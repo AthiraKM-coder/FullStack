@@ -1,0 +1,119 @@
+<!--
+install
+
+npm install @angular/flex-layout@latest
+
+
+-->
+
+
+<div class="mb-3 container">
+  <label class="form-label" for="ct_catid">Category Name</label>
+  <select aria-describedby="emailHelp" [(ngModel)]="catid" (change)="showValue()">
+        <option *ngFor="let a of catObj" [value]="a.catid">{{a.catnm}}</option>
+  </select>
+  <span class="material-symbols-outlined float-end" (click)="showcart()" data-bs-toggle="modal" data-bs-target="#showcart"> shopping_cart</span>
+
+
+  <div class="modal fade" id="showcart"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Description : </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+            <table class="table table-responsive">
+              <tr *ngFor="let a of cart">
+                  <td>{{a.prnm}}</td>
+                  <td>{{a.qty}}</td>
+                  <td>{{a.price}}</td>
+                  <td><img src="data:image/*;base64,{{a.pic}}" height="40" width="40"></td>
+                  <td><button (click)="deletecart(a)" class="btn btn-danger">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </button></td>
+              </tr>
+            </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<div class="container">
+
+  <div
+  fxLayout="row wrap"
+  fxLayout.lt-sm="column"
+  fxLayoutGap="32px"
+  fxLayoutAlign="flex-start">
+<ng-container *ngFor="let a of prdtbycat">
+  <div
+    fxFlex="0 1 calc(33.3% - 32px)"
+    fxFlex.lt-md="0 1 calc(50% - 32px)"
+    fxFlex.lt-sm="100%">
+
+
+
+<div class="card shadow-lg">
+      <div class="card-header text-center text-warning">
+          <strong class="fs-3" data-bs-toggle="modal" data-bs-target="#showdescrip"> {{a.prnm}} </strong>
+      </div>
+
+      <div class="card-body d-flex justify-content-center">
+        <img src="data:image/*;base64,{{a.pic}}" height="150" width="150">
+      </div>
+
+      <div class="card-footer text-center">
+          <div>Rs. {{a.price}}</div>
+          <div>
+                  <button class="btn btn-warning" (click)="addtolocalstorage(a)"> Add To Cart </button>
+          </div>
+      </div>
+  </div>
+  <div class="m-5"></div>
+
+
+  </div>
+
+
+
+  <div class="modal fade" id="showdescrip"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Description : </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        {{a.descrip}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</ng-container>
+</div>
+
+</div>
+
+
+
+
+
