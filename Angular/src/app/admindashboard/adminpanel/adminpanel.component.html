@@ -1,0 +1,21 @@
+<div class="mt-3 text-center">
+
+  <button type="button" class="btn btn-danger" (click)="categorybtn()"> Category </button>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button type="button" class="btn btn-danger"(click)="productbtn()"> Product </button>
+
+</div>
+
+<div class="container m-3 ">
+  <ng-template [ngIf]="toggle">
+    <div class="container text-dark">
+       <app-category></app-category>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!toggle">
+    <div class="container text-dark ">
+      <app-listproduct></app-listproduct>
+    </div>
+  </ng-template>
+</div>
